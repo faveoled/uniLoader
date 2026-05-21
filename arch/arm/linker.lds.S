@@ -3,7 +3,13 @@
  * Copyright (c) 2025, Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
  */
 
-ENTRY(_start);
+ENTRY(
+#ifdef CONFIG_LINUX_KRNL_HEADER_IMG
+      _head
+#else
+      _start
+#endif
+     );
 
 OUTPUT_FORMAT("elf32-littlearm")
 OUTPUT_ARCH(arm)

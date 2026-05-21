@@ -4,6 +4,19 @@
  */
 #include "asmdefs.h"
 
+#ifdef CONFIG_LINUX_KRNL_HEADER_IMG
+.section .text.start
+ENTRY(_head)
+	.rept 8
+	mov r0, r0
+	.endr
+	b _start
+	.word 0x016f2818		@ magic
+	.word _head			@ start of image
+	.word _end			@ end of image
+END(_head)
+#endif
+
 .section .text
 ENTRY(_start)
 	/* disable interrupts */
@@ -67,4 +80,3 @@ ENTRY_ALIAS(_ramdisk_end)
 
 ENTRY_ALIAS(ramdisk_size)
 	.word _ramdisk_end - _ramdisk_start
-
