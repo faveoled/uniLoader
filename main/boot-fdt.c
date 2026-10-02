@@ -6,7 +6,7 @@
 #include <drivers/ramdisk-handler.h>
 #include <lib/debug.h>
 
-static char fdt_buf[CONFIG_FDT_BUF_SIZE];
+static char fdt_buf[CONFIG_FDT_BUF_SIZE] __attribute__((aligned(8)));
 
 void patch_dtb(void** dt)
 {

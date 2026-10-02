@@ -46,19 +46,23 @@ END(load_kernel_and_jump)
 
 /* embedding kernel and dt */
 .section .rodata
+.balign 8
 ENTRY(_kernel_start)
 	.incbin "blob/Image"
 END(_kernel_start)
 
 ENTRY_ALIAS(_kernel_end)
 
+.balign 4
 ENTRY_ALIAS(kernel_size)
 	.word _kernel_end - _kernel_start
 
+.balign 8
 ENTRY(_dt_start)
 	.incbin "blob/dtb"
 END(_dt_start)
 
+.balign 8
 ENTRY(_ramdisk_start)
 	.incbin "blob/ramdisk"
 END(_ramdisk_start)

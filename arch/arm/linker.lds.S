@@ -20,27 +20,28 @@ SECTIONS
 		*(.text.*)
 	}
 
-	.rodata ALIGN(4) : {
+	.rodata ALIGN(8) : {
 		*(.rodata)
 		*(.rodata.*)
 	}
 
-	.uniloader_drivers ALIGN(4) : {
+	.uniloader_drivers ALIGN(8) : {
 		__drivers_start = .;
 		KEEP(*(.uniloader_drivers))
 		__drivers_end = .;
 	}
 
-	.data ALIGN(4) : {
+	.data ALIGN(8) : {
 		*(.data)
 		*(.data.*)
 	}
 
-	.bss ALIGN(4) : {
+	.bss ALIGN(8) : {
 		__bss_start = .;
 		*(.bss)
 		*(.bss.*)
 		*(COMMON)
+		. = ALIGN(8);
 		__bss_end = .;
 	}
 
